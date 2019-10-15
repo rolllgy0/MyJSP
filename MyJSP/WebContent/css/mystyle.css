@@ -1,0 +1,21 @@
+a:visited{
+	color: black;
+}
+a:hover{
+	background-color: White;
+}
+a{
+	text-decoration: none;
+}
+.mymenu{
+	padding-left: 200px;
+	font-size: 26px;
+}
+.mymenu > ul {
+	list-style-type: none;
+	padding: 25px 0;
+}
+.mymenu > ul > li {
+	padding-right: 50px;
+	float: left;
+}
