@@ -1,5 +1,5 @@
-<%@page import="com.kb.org.member.MemberVO"%>
-<%@page import="java.util.List"%>
+<%@ page import="com.kb.org.member.MemberVO"%>
+<%@ page import="java.util.List"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Set"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -27,10 +27,10 @@
 						<td>가입일</td>
 					</tr>
 					<%
-						@SuppressWarnings("all")
-						List<MemberVO> list = (List)request.getAttribute("myList");
-						for(MemberVO vo : list)
-							out.println(vo.getName());
+// 						@SuppressWarnings("all")
+// 						List<MemberVO> list = (List)request.getAttribute("myList");
+// 						for(MemberVO vo : list)
+// 							out.println(vo.getName());
 					%>
 					<c:forEach items="${myList}" var="i">
 						<tr>

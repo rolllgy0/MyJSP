@@ -23,7 +23,7 @@ public class MainController extends HttpServlet {
     public MainController() {
         super();
     }
-
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = null;		// JSP 파일지정
 		request.setCharacterEncoding("UTF-8");
@@ -51,20 +51,19 @@ public class MainController extends HttpServlet {
 				while(rs.next()) {
 					list.add(
 						new MemberVO(
-								rs.getString("name"),
-								rs.getString("id"),
-								rs.getString("pwd"),
-								rs.getInt("seq"),
-								rs.getString("joindate"),
-								rs.getString("gender")
-							)
-						);
+							rs.getString("name"),
+							rs.getString("id"),
+							rs.getString("pwd"),
+							rs.getInt("seq"),
+							rs.getString("joindate"),
+							rs.getString("gender")
+						)
+					);
 				}
 				request.setAttribute("myList", list);
 			}catch(Exception e) {
-				
+				e.printStackTrace();
 			}
-			
 			rd = request.getRequestDispatcher("member.jsp");
 		}else if(cmd.equals("/freeboard.do")) {
 			rd = request.getRequestDispatcher("freeboard.jsp");
