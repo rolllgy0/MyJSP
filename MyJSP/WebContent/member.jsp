@@ -1,3 +1,5 @@
+<%@page import="com.kb.org.member.MemberVO"%>
+<%@page import="java.util.List"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Set"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -15,16 +17,32 @@
 		<!-- body -->
 		<div class="row">
 			<div class="col">
-				<%
-					@SuppressWarnings("all")
-					HashMap<String, String> hm = (HashMap)request.getAttribute("hm");
-					Set<String> keys = hm.keySet();
-					for(String key : keys)
-						out.println(key + hm.get(key) + "<br/>");
-				%>
-				<c:forEach items="${hm}" var="i">
-					${i}<br/>
-				</c:forEach>
+				<table class="table">
+					<tr>
+						<td>순번</td>
+						<td>아이디</td>
+						<td>비밀번호</td>
+						<td>이름</td>
+						<td>성별</td>
+						<td>가입일</td>
+					</tr>
+					<%
+						@SuppressWarnings("all")
+						List<MemberVO> list = (List)request.getAttribute("myList");
+						for(MemberVO vo : list)
+							out.println(vo.getName());
+					%>
+					<c:forEach items="${myList}" var="i">
+						<tr>
+							<td>${i.seq}</td>
+							<td>${i.id}</td>
+							<td>${i.pwd}</td>
+							<td>${i.name}</td>
+							<td>${i.gender}</td>
+							<td>${i.joindate}</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 		</div><hr/>
 		<!-- footer -->
