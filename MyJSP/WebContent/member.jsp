@@ -16,7 +16,7 @@
 		<jsp:include page="menu.jsp"/>
 		<!-- body -->
 		<div class="row">
-			<div class="col">
+			<div class="col-xs-9">
 				<table class="table">
 					<tr>
 						<td>순번</td>
@@ -43,6 +43,9 @@
 						</tr>
 					</c:forEach>
 				</table>
+			</div>
+			<div class="col-xs-3">
+				<button type="button" class="btn" onclick="location.href='memberInsert.do';">회원등록</button>
 			</div>
 		</div><hr/>
 		<!-- footer -->

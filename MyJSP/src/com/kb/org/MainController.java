@@ -67,6 +67,11 @@ public class MainController extends HttpServlet {
 			rd = request.getRequestDispatcher("member.jsp");
 		}else if(cmd.equals("/freeboard.do")) {
 			rd = request.getRequestDispatcher("freeboard.jsp");
+		}else if(cmd.equals("/memberInsert.do")) {
+			rd = request.getRequestDispatcher("memberInsert.jsp");
+		}else if(cmd.equals("/memberInsertProc.do")) {
+			// 회원 등록 하고 list 화면 보여주기
+			rd = request.getRequestDispatcher("memberInsertProc.jsp");
 		}
 		rd.forward(request, response);
 	}

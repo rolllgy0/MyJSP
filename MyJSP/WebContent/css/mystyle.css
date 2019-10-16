@@ -2,7 +2,7 @@ a:visited{
 	color: black;
 }
 a:hover{
-	background-color: White;
+	text-decoration: none;
 }
 a{
 	text-decoration: none;
