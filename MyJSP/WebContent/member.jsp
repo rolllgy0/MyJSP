@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Index</title>
-<jsp:include page="head.jsp"/>
+<%@ include file="head.jsp" %>
 </head>
 <body>
 	<div class="container">
@@ -46,6 +46,17 @@
 			</div>
 			<div class="col-xs-3">
 				<button type="button" class="btn" onclick="location.href='memberInsert.do';">회원등록</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="pagination">
+					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+					<c:forEach begin="1" end="${membercnt}" var="i">
+						<li class="page-item"><a class="page-link" href="${path}/member.do?pageNum=${i}">${i}</a></li>
+					</c:forEach>
+					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>
 			</div>
 		</div><hr/>
 		<!-- footer -->

@@ -1,11 +1,6 @@
 package com.kb.org;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,11 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kb.org.member.MemberVO;
+import com.kb.org.member.*;
 
 @WebServlet("*.do")
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private MemberDAO dm = MemberDAO.getInstance();
        
     public MainController() {
         super();
@@ -42,28 +38,8 @@ public class MainController extends HttpServlet {
 			 */
 			rd = request.getRequestDispatcher("index.jsp");
 		}else if(cmd.equals("/member.do")) {
-			try {
-				List<MemberVO> list = new ArrayList<>();
-				Connection conn = ConnectionPool.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement("select * from member ");
-				ResultSet rs = pstmt.executeQuery();
-				
-				while(rs.next()) {
-					list.add(
-						new MemberVO(
-							rs.getString("name"),
-							rs.getString("id"),
-							rs.getString("pwd"),
-							rs.getInt("seq"),
-							rs.getString("joindate"),
-							rs.getString("gender")
-						)
-					);
-				}
-				request.setAttribute("myList", list);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
+			dm.select(request);
+			dm.cntmember(request);
 			rd = request.getRequestDispatcher("member.jsp");
 		}else if(cmd.equals("/freeboard.do")) {
 			rd = request.getRequestDispatcher("freeboard.jsp");
@@ -71,7 +47,9 @@ public class MainController extends HttpServlet {
 			rd = request.getRequestDispatcher("memberInsert.jsp");
 		}else if(cmd.equals("/memberInsertProc.do")) {
 			// 회원 등록 하고 list 화면 보여주기
-			rd = request.getRequestDispatcher("memberInsertProc.jsp");
+			dm.insert(request);
+			dm.select(request);
+			rd = request.getRequestDispatcher("member.jsp");
 		}
 		rd.forward(request, response);
 	}
