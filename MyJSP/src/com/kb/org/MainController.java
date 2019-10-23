@@ -27,9 +27,9 @@ public class MainController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String cmd = reqURI.substring(contextPath.length());
 		
-		System.out.println("reqURI = " + reqURI);
-		System.out.println("contextPath = " + contextPath);
-		System.out.println("cmd = " + cmd);
+//		System.out.println("reqURI = " + reqURI);
+//		System.out.println("contextPath = " + contextPath);
+//		System.out.println("cmd = " + cmd);
 		
 		if(cmd.equals("/index.do")) {
 			/*
@@ -50,6 +50,20 @@ public class MainController extends HttpServlet {
 			dm.insert(request);
 			dm.select(request);
 			rd = request.getRequestDispatcher("member.jsp");
+		}else if(cmd.equals("/memberUpdate.do")) {
+			// String seq = request.getParameter("seq");
+			dm.selectRow(request);
+			rd = request.getRequestDispatcher("memberUpdate.jsp");
+		}else if(cmd.equals("/memberUpdateProc.do")) {
+			dm.updateRow(request);
+			dm.select(request);
+			rd = request.getRequestDispatcher("member.jsp");
+		}else if(cmd.equals("/memberDelete.do")) {
+			String[] seqs = request.getParameterValues("seq");
+			for(String temp : seqs) System.out.println("temp = " + temp);
+			rd = request.getRequestDispatcher("memberDelete.jsp");
+		}else {
+			rd = request.getRequestDispatcher("error404.jsp");
 		}
 		rd.forward(request, response);
 	}
